@@ -6,7 +6,9 @@ import './css/icons-extra.css'
 import Router from 'vue-router'
 Vue.use(Router);
 import VueResource from 'vue-resource'
+// 设置请求api服务器的根路径
 Vue.use(VueResource);
+Vue.http.options.root = 'http://localhost:3000';
 Vue.component(Header.name, Header);
 Vue.component(Button.name, Button);
 Vue.component(Swipe.name,Swipe);
