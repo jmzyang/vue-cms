@@ -1,25 +1,24 @@
 <template lang="html">
   <div class="">
-    <mt-swipe :auto="4000">
-      <!-- 在组件中,使用v-for循环的话,一定要使用key -->
-      <!-- 抓取数据的时候src就命名为url -->
-    <mt-swipe-item v-for="item in lunbotuList" :key="item.url">
-      <!-- 让普通属性识别vue,需要加绑定:v-bind 防止认识是字符串 -->
-      <img :src="item.url" alt="">
-    </mt-swipe-item>
-  </mt-swipe>
+  <swiper :lunbotuList="lunbotuList" :isfull="true"></swiper>  
   <ul class="mui-table-view mui-grid-view mui-grid-9">
-       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
               <router-link to="/home/newslist">
                <img src="../../images/menu1.png" alt="">
-               <div class="mui-media-body">新闻资讯</div></a>
+               <div class="mui-media-body">新闻资讯</div>
               </router-link></li>
        <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+              <router-link to="/home/photolist">
                 <img src="../../images/menu2.png" alt="">
-               <div class="mui-media-body">图片分享</div></a></li>
-       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+               <div class="mui-media-body">图片分享</div>
+               </router-link>
+             </li>
+       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+            <router-link to="/home/goodslist">
                 <img src="../../images/menu3.png" alt="">
-               <div class="mui-media-body">商品购买</div></a></li>
+               <div class="mui-media-body">商品购买</div>
+             </router-link>
+            </li>
        <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
                <img src="../../images/menu4.png" alt="">
                <div class="mui-media-body">留言反馈</div></a></li>
@@ -33,7 +32,8 @@
   </div>
 </template>
 <script>
-import {Toast} from 'mint-ui'
+import {Toast} from 'mint-ui';
+import swiper from '../subcomponents/swiper.vue'
 export default {
   data(){
     return {
@@ -58,28 +58,15 @@ export default {
       });
     }
   }
+  ,
+  components:{
+    swiper
+  }
 }
 </script>
 
 <style lang="scss">
- .mint-swipe {
-   height: 200px;
-   .mint-swipe-item {
-     &:nth-child(1){
-       background-color:rgb(75, 212, 88);
-     }
-     &:nth-child(2){
-       background-color:rgb(212, 143, 75);
-     }
-     &:nth-child(3){
-       background-color:rgb(212, 75, 111);
-     }
-     img {
-       width:100%;
-       height:100%;
-     }
-   }
- }
+
  .mui-grid-view.mui-grid-9 {
    background-color:white;
    border:0;

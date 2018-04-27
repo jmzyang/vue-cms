@@ -2,8 +2,8 @@
   <div class="cmt-container">
     <h3>发表评论</h3>
     <hr>
-    <textarea placeholder="请输入要BB的内容(最多120字)" maxlength="120"></textarea>
-    <mt-button type="primary" size="large">发表评论</mt-button>
+    <textarea placeholder="请输入要BB的内容(最多120字)" maxlength="120" v-model="msg"></textarea>
+    <mt-button type="primary" size="large" @click = "postComment">发表评论</mt-button>
     <div class="cmt-list">
        <div class="cmt-item" v-for="(item,index) in comments" :key="item.add">
          <div class="cmt-title">
@@ -24,7 +24,8 @@ export default {
   data(){
     return {
       pageIndex:1,
-      comments:[]
+      comments:[],
+      msg:''
     };
   },
   created(){
@@ -40,6 +41,16 @@ export default {
             Toast('获取评论失败!');
           }
       })
+    },
+    postComment(){
+      // this.$ 因为没有评论接口直接拼接假数据到数组
+      var cmt = {
+        userinfo:{nick:'匿名用户'},
+        timeDifference:Date.now(),
+        content:this.msg
+      };
+      this.comments.unshift(cmt);
+      this.msg="";
     },
     getMore(){
       this.pageIndex++;
